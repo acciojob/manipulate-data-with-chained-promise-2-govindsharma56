@@ -1,18 +1,42 @@
-//your JS code here. If required.
-let output=document.querySelector('#output');
-let arr=[1,2,3,4];
+
+// your JS code here. If required.
+
+let output = document.querySelector('#output');
+let arr = [1, 2, 3, 4];
+
 function manipulateArray(arr) {
-  return Promise.resolve(arr)
-    .then((data) => {
-        // 1. Odd numbers remove
-        return data.filter(num => num % 2 === 0);
-    })
-    .then((data) => {
-        // 2. Even numbers × 2
-        return data.map(num => num * 2);
-    });
+
+    return Promise.resolve(arr)
+
+        // First transformation: filter even numbers
+        .then((data) => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+
+                    let evenNumbers = data.filter(num => num % 2 === 0);
+
+                    output.innerText = JSON.stringify(evenNumbers);
+
+                    resolve(evenNumbers);
+
+                }, 1000);
+            });
+        })
+
+        // Second transformation: multiply by 2
+        .then((data) => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+
+                    let result = data.map(num => num * 2);
+
+                    output.innerText = JSON.stringify(result);
+
+                    resolve(result);
+
+                }, 2000);
+            });
+        });
 }
-manipulateArray([1, 2, 3, 4]) 
-.then((result) => 
-{ document.querySelector("#output").innerText = "Result: " + result.join(", ");
-});
+
+manipulateArray(arr);
