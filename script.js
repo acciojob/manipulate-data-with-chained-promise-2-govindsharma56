@@ -19,7 +19,7 @@ function manipulateArray(arr) {
 
                     resolve(evenNumbers);
 
-                }, 1000);
+                }, 3000);
             });
         })
 
